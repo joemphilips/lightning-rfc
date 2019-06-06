@@ -341,3 +341,7 @@ optimizations
 structs
 CompactSize
 encodings
+fips
+rfc
+varint
+CompactSize
