@@ -724,6 +724,12 @@ General permanent failure of the processing node.
 
 The processing node has a required feature which was not in this onion.
 
+1. type: BADONION|PERM (`invalid_onion_payload`)
+2. data:
+   * [`sha256`:`sha256_of_onion`]
+
+The onion per-hop payload was not understood by the processing node.
+
 1. type: BADONION|PERM|4 (`invalid_onion_version`)
 2. data:
    * [`sha256`:`sha256_of_onion`]
@@ -871,6 +877,8 @@ A _forwarding node_ MAY, but a _final node_ MUST NOT:
     - return an `invalid_onion_hmac` error.
   - if the ephemeral key in the onion is unparsable:
     - return an `invalid_onion_key` error.
+  - if the per-hop payload in the onion is unparsable:
+    - return an `invalid_onion_payload` error.
   - if during forwarding to its receiving peer, an otherwise unspecified,
   transient error occurs in the outgoing channel (e.g. channel capacity reached,
   too many in-flight HTLCs, etc.):
